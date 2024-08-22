@@ -79,7 +79,7 @@ CONFIG_PACKAGE_libip6tc2=y
 CONFIG_PACKAGE_libiptext0=y
 CONFIG_PACKAGE_libiptext6-0=y
 CONFIG_PACKAGE_kmod-ipt-fullconenat=y
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+#CONFIG_PACKAGE_luci-app-netspeedtest=y
 # 自定义nss
 CONFIG_PACKAGE_gn=y 
 CONFIG_PACKAGE_htop=y 
