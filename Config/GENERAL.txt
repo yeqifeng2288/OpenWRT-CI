@@ -69,6 +69,16 @@ CONFIG_PACKAGE_wpad-openssl=y
 #自定义
 CONFIG_PACKAGE_luci-app-ramfree=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
+CONFIG_PACKAGE_iptables=y
+CONFIG_PACKAGE_ip6tables=y
+CONFIG_PACKAGE_kmod-ipt-physdev=y
+CONFIG_PACKAGE_kmod-nf-ipvs=y
+CONFIG_PACKAGE_kmod-veth=y
+CONFIG_PACKAGE_libip4tc2=y
+CONFIG_PACKAGE_libip6tc2=y
+CONFIG_PACKAGE_libiptext0=y
+CONFIG_PACKAGE_libiptext6-0=y
+CONFIG_PACKAGE_kmod-ipt-fullconenat=y
 # 自定义nss
 CONFIG_PACKAGE_gn=y 
 CONFIG_PACKAGE_htop=y 
