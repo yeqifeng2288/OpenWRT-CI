@@ -34,14 +34,10 @@ UPDATE_PACKAGE "gecoosac" "lwb1978/openwrt-gecoosac" "main"
 
 # 从 Add-Packages.sh 读取并调用 UPDATE_PACKAGE
 echo 'UPDATE_PACKAGE_Diy_Packages'
-while IFS= read -r line; do
-    # 忽略空行和注释
-    [[ -z "$line" || "$line" =~ ^# ]] && continue
+UPDATE_PACKAGE "luci-app-netspeedtest" "sirpdboy/netspeedtest" "master"
 
-    # 调用 UPDATE_PACKAGE 函数
-    echo $line
-    UPDATE_PACKAGE $line
-done < $GITHUB_WORKSPACE/diy/Add-Packages.sh
+##
+
 
 if [[ $WRT_REPO != *"lede"* ]]; then
 	UPDATE_PACKAGE "daed" "QiuSimons/luci-app-daed" "master"
