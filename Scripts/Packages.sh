@@ -33,6 +33,7 @@ UPDATE_PACKAGE "advancedplus" "VIKINGYFY/luci-app-advancedplus" "main"
 UPDATE_PACKAGE "gecoosac" "lwb1978/openwrt-gecoosac" "main"
 
 # 从 Add-Packages.sh 读取并调用 UPDATE_PACKAGE
+echo 'UPDATE_PACKAGE_Diy_Packages'
 while IFS= read -r line; do
     # 忽略空行和注释
     [[ -z "$line" || "$line" =~ ^# ]] && continue
