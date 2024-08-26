@@ -31,7 +31,15 @@ UPDATE_PACKAGE "ssr-plus" "fw876/helloworld" "master"
 
 UPDATE_PACKAGE "advancedplus" "VIKINGYFY/luci-app-advancedplus" "main"
 UPDATE_PACKAGE "gecoosac" "lwb1978/openwrt-gecoosac" "main"
-UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
+
+# 从 Add-Packages.sh 读取并调用 UPDATE_PACKAGE
+while IFS= read -r line; do
+    # 忽略空行和注释
+    [[ -z "$line" || "$line" =~ ^# ]] && continue
+
+    # 调用 UPDATE_PACKAGE 函数
+    UPDATE_PACKAGE $line
+done < $GITHUB_WORKSPACE/diy/Add-Packages.sh
 
 if [[ $WRT_REPO != *"lede"* ]]; then
 	UPDATE_PACKAGE "daed" "QiuSimons/luci-app-daed" "master"
