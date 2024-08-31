@@ -112,3 +112,6 @@ CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-cpufreq=y
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-ttyd=y
+
+#预装sudo
+CONFIG_PACKAGE_sudo=y
