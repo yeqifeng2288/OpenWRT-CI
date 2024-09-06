@@ -116,8 +116,8 @@ CONFIG_PACKAGE_luci-app-ttyd=y
 #预装sudo
 CONFIG_PACKAGE_sudo=y
 # usb工具
-CONFIG_PACKAGE_usbutils
+CONFIG_PACKAGE_usbutils=y
 # 硬盘测速
-CONFIG_PACKAGE_hdparm
+CONFIG_PACKAGE_hdparm=y
 # unzip
-CONFIG_PACKAGE_unzip
+CONFIG_PACKAGE_unzip=y
