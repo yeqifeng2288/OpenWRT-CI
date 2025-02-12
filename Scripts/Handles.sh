@@ -26,8 +26,8 @@ fi
 if [ -d *"luci-theme-argon"* ]; then
 	cd ./luci-theme-argon/
 
-	sed -i '/font-weight:/ {/normal\|!important/! s/\(font-weight:\s*\)[^;]*;/\1normal;/}' $(find ./luci-theme-argon -type f -iname "*.css")
-	sed -i "s/#5e72e4/#31a1a1/; s/#483d8b/#31a1a1/; s/'0.2'/'0.5'/; s/'none'/'bing'/" ./luci-app-argon-config/root/etc/config/argon
+	sed -i '/font-weight:/ {/!important/! s/\(font-weight:\s*\)[^;]*;/\1normal;/}' $(find ./luci-theme-argon -type f -iname "*.css")
+	sed -i "s/primary '.*'/primary '#31a1a1'/; s/'0.2'/'0.5'/; s/'none'/'bing'/" ./luci-app-argon-config/root/etc/config/argon
 
 	cd $PKG_PATH && echo "theme-argon has been fixed!"
 fi
@@ -57,4 +57,11 @@ if [ -f "$TS_FILE" ]; then
 	sed -i '/\/files/d' $TS_FILE
 
 	cd $PKG_PATH && echo "tailscale has been fixed!"
+fi
+#修复Coremark编译失败
+CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
+if [ -f "$CM_FILE" ]; then
+	sed -i 's/mkdir/mkdir -p/g' $CM_FILE
+
+	cd $PKG_PATH && echo "coremark has been fixed!"
 fi
