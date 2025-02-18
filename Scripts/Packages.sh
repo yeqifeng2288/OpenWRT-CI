@@ -22,7 +22,7 @@ UPDATE_PACKAGE() {
 	for NAME in "${CUSTOM_NAMES[@]}"; do
 		# 查找匹配的目录
 		echo "Searching directory: $NAME"
-		local FOUND_DIRS=$(find ./ ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$NAME*" 2>/dev/null)
+		local FOUND_DIRS=$(find ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$NAME*" 2>/dev/null)
 
 		# 删除找到的目录
 		if [ -n "$FOUND_DIRS" ]; then

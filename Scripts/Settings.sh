@@ -39,11 +39,11 @@ echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
 
 #手动调整的插件
 if [ -n "$WRT_PACKAGE" ]; then
-	echo "$WRT_PACKAGE" >> ./.config
+	echo -e "$WRT_PACKAGE" >> ./.config
 fi
 
 #高通平台调整
-if [[ $WRT_TARGET == *"IPQ"* ]]; then
+if [[ $WRT_TARGET == *"QUALCOMMAX"* ]]; then
 	#取消nss相关feed
 	echo "CONFIG_FEED_nss_packages=n" >> ./.config
 	echo "CONFIG_FEED_sqm_scripts_nss=n" >> ./.config
