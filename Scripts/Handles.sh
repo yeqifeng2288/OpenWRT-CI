@@ -14,7 +14,8 @@ if [ -d *"homeproxy"* ]; then
 
 	echo $RES_VER | tee china_ip4.ver china_ip6.ver china_list.ver gfw_list.ver
 	awk -F, '/^IP-CIDR,/{print $2 > "china_ip4.txt"} /^IP-CIDR6,/{print $2 > "china_ip6.txt"}' cncidr.txt
-	sed 's/^\.//g' direct.txt > china_list.txt ; sed 's/^\.//g' gfw.txt > gfw_list.txt
+	sed 's/^\.//g' direct.txt >china_list.txt
+	sed 's/^\.//g' gfw.txt >gfw_list.txt
 	mv -f ./{china_*,gfw_list}.{ver,txt} ../$HP_PATH/resources/
 
 	cd .. && rm -rf ./$HP_RULE/
@@ -35,11 +36,7 @@ fi
 #修改qca-nss-drv启动顺序
 NSS_DRV="../feeds/nss_packages/qca-nss-drv/files/qca-nss-drv.init"
 if [ -f "$NSS_DRV" ]; then
-<<<<<<< HEAD
 	sed -i 's/START=.*/START=85/g' $NSS_DRV
-=======
-	sed -i 's/START=.*/START=85/g' "$qca_drv_path" $NSS_DRV
->>>>>>> 79269d44e5b8165b9b9f99a0c4735b6b9a867f37
 
 	cd $PKG_PATH && echo "qca-nss-drv has been fixed!"
 fi
@@ -47,11 +44,7 @@ fi
 #修改qca-nss-pbuf启动顺序
 NSS_PBUF="./kernel/mac80211/files/qca-nss-pbuf.init"
 if [ -f "$NSS_PBUF" ]; then
-<<<<<<< HEAD
 	sed -i 's/START=.*/START=86/g' $NSS_PBUF
-=======
-	sed -i 's/START=.*/START=86/g' "$qca_drv_path" $NSS_PBUF
->>>>>>> 79269d44e5b8165b9b9f99a0c4735b6b9a867f37
 
 	cd $PKG_PATH && echo "qca-nss-pbuf has been fixed!"
 fi
@@ -82,10 +75,6 @@ if [ -f "$TS_FILE" ]; then
 
 	cd $PKG_PATH && echo "tailscale has been fixed!"
 fi
-<<<<<<< HEAD
-=======
-
->>>>>>> 79269d44e5b8165b9b9f99a0c4735b6b9a867f37
 #修复Coremark编译失败
 CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
 if [ -f "$CM_FILE" ]; then

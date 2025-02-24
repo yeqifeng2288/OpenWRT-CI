@@ -6,26 +6,16 @@ UPDATE_PACKAGE() {
 	local PKG_REPO=$2
 	local PKG_BRANCH=$3
 	local PKG_SPECIAL=$4
-<<<<<<< HEAD
 	local CUSTOM_NAMES=($5) # 第5个参数为自定义名称列表
-=======
-	local CUSTOM_NAMES=($5)  # 第5个参数为自定义名称列表
->>>>>>> 79269d44e5b8165b9b9f99a0c4735b6b9a867f37
 	local REPO_NAME=$(echo $PKG_REPO | cut -d '/' -f 2)
 
 	echo " "
 
 	# 将 PKG_NAME 加入到需要查找的名称列表中
 	if [ ${#CUSTOM_NAMES[@]} -gt 0 ]; then
-<<<<<<< HEAD
 		CUSTOM_NAMES=("$PKG_NAME" "${CUSTOM_NAMES[@]}") # 将 PKG_NAME 添加到自定义名称列表的开头
 	else
 		CUSTOM_NAMES=("$PKG_NAME") # 如果没有自定义名称，则只使用 PKG_NAME
-=======
-		CUSTOM_NAMES=("$PKG_NAME" "${CUSTOM_NAMES[@]}")  # 将 PKG_NAME 添加到自定义名称列表的开头
-	else
-		CUSTOM_NAMES=("$PKG_NAME")  # 如果没有自定义名称，则只使用 PKG_NAME
->>>>>>> 79269d44e5b8165b9b9f99a0c4735b6b9a867f37
 	fi
 
 	# 删除本地可能存在的不同名称的软件包
