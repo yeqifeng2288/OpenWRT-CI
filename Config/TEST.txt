@@ -1,5 +1,10 @@
 #设备平台
+<<<<<<< HEAD
 CONFIG_TARGET_mediatek=y
 CONFIG_TARGET_mediatek_filogic=y
+=======
+CONFIG_TARGET_qualcommax=y
+CONFIG_TARGET_qualcommax_ipq60xx=y
+>>>>>>> 79269d44e5b8165b9b9f99a0c4735b6b9a867f37
 #设备列表
 CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_superbox_s20-plus=y
