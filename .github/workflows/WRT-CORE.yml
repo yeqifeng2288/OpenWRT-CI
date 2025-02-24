@@ -239,11 +239,6 @@ jobs:
 
             源码：${{env.WRT_REPO}}
             分支：${{env.WRT_BRANCH}}
-<<<<<<< HEAD
-            提交：${{env.WRT_HASH}}
-
-=======
->>>>>>> 79269d44e5b8165b9b9f99a0c4735b6b9a867f37
             配置：${{env.WRT_CONFIG}}
             平台：${{env.WRT_TARGET}}
             地址：${{env.WRT_IP}}
