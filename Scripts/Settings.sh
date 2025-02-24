@@ -40,11 +40,7 @@ echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >>./.config
 echo "CONFIG_USE_APK=n" >>./.config
 #手动调整的插件
 if [ -n "$WRT_PACKAGE" ]; then
-<<<<<<< HEAD
 	echo -e "$WRT_PACKAGE" >>./.config
-=======
-	echo -e "$WRT_PACKAGE" >> ./.config
->>>>>>> 79269d44e5b8165b9b9f99a0c4735b6b9a867f37
 fi
 
 #高通平台调整
