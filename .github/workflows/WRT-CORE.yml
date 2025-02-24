@@ -214,6 +214,8 @@ jobs:
             done
 
             find ./bin/targets/ -type f -exec mv -f {} ./upload/ \;
+
+            make clean -j$(nproc)
           fi
 
           echo "WRT_KVER=${KVER:-none}" >> $GITHUB_ENV
@@ -237,6 +239,8 @@ jobs:
 
             源码：${{env.WRT_REPO}}
             分支：${{env.WRT_BRANCH}}
+            提交：${{env.WRT_HASH}}
+
             配置：${{env.WRT_CONFIG}}
             平台：${{env.WRT_TARGET}}
             地址：${{env.WRT_IP}}
