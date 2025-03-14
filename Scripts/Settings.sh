@@ -32,15 +32,14 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
 sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
 
 #配置文件修改
-echo "CONFIG_PACKAGE_luci=y" >>./.config
-echo "CONFIG_LUCI_LANG_zh_Hans=y" >>./.config
-echo "CONFIG_PACKAGE_luci-theme-$WRT_THEME=y" >>./.config
-echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >>./.config
-#自定义配置，金庸apk，改回opkg
-echo "CONFIG_USE_APK=n" >>./.config
+echo "CONFIG_PACKAGE_luci=y" >> ./.config
+echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-theme-$WRT_THEME=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
+
 #手动调整的插件
 if [ -n "$WRT_PACKAGE" ]; then
-	echo -e "$WRT_PACKAGE" >>./.config
+	echo -e "$WRT_PACKAGE" >> ./.config
 fi
 
 #高通平台调整
@@ -60,6 +59,6 @@ fi
 
 #编译器优化
 if [[ $WRT_TARGET != *"X86"* ]]; then
-	echo "CONFIG_TARGET_OPTIONS=y" >>./.config
-	echo "CONFIG_TARGET_OPTIMIZATION=\"-O2 -pipe -march=armv8-a+crypto+crc -mcpu=cortex-a53+crypto+crc -mtune=cortex-a53\"" >>./.config
+	echo "CONFIG_TARGET_OPTIONS=y" >> ./.config
+	echo "CONFIG_TARGET_OPTIMIZATION=\"-O2 -pipe -march=armv8-a+crypto+crc -mcpu=cortex-a53+crypto+crc -mtune=cortex-a53\"" >> ./.config
 fi
