@@ -7,5 +7,5 @@ version=$(echo $version | awk -F'["]' '{print $1}')
 echo $version
 firmwares_name="immortalwrt.git-main_qualcommax-ipq60xx-jdcloud_re-ss-01-squashfs-sysupgrade_${version}.bin"
 echo $firmwares_name
-wget "https://github.com/yeqifeng2288/OpenWRT-CI/releases/download/IPQ60XX-WIFI-YES-VIKINGYFY-main-${version}/VIKINGYFY-main-qualcommax
+wget "https://github.com/yeqifeng2288/OpenWRT-CI/releases/download/IPQ60XX-WIFI-YES-VIKINGYFY-main-${version}/VIKINGYFY-main-qualcommax-ipq60xx-jdcloud_re-ss-01-squashfs-sysupgrade-${version}.bin" -O "/tmp/${firmwares_name}"
 sysupgrade -F /tmp/$firmwares_name
