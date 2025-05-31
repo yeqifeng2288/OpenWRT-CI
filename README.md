@@ -1,3 +1,6 @@
+# 升级命令
+curl -sSL https://raw.githubusercontent.com/yeqifeng2288/OpenWRT-CI/main/upgrade.sh | sh
+
 # OpenWRT-CI
 云编译OpenWRT固件
 
