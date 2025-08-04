@@ -8,4 +8,6 @@ echo $version
 firmwares_name="immortalwrt.git-main_qualcommax-ipq60xx-jdcloud_re-ss-01-squashfs-sysupgrade_${version}.bin"
 echo $firmwares_name
 wget "https://github.com/yeqifeng2288/OpenWRT-CI/releases/download/IPQ60XX-WIFI-YES-VIKINGYFY-main-${version}/VIKINGYFY-main-qualcommax-ipq60xx-jdcloud_re-ss-01-squashfs-sysupgrade-${version}.bin" -O "/var/tmp/${firmwares_name}"
+mkdir /mnt/mmcblk0p27/backup -p
+cp /var/tmp/${firmwares_name} /mnt/mmcblk0p27/backup/${firmwares_name}
 sysupgrade -F /var/tmp/${firmwares_name}
