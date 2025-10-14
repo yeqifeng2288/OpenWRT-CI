@@ -30,7 +30,6 @@ if [ -d *"luci-theme-argon"* ]; then
 
 	cd ./luci-theme-argon/
 
-	sed -i "/font-weight:/ { /important/! { /\/\*/! s/:.*/: var(--font-weight);/ } }" $(find ./luci-theme-argon -type f -iname "*.css")
 	sed -i "s/primary '.*'/primary '#31a1a1'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/" ./luci-app-argon-config/root/etc/config/argon
 
 	cd $PKG_PATH && echo "theme-argon has been fixed!"
@@ -85,4 +84,14 @@ if [ -f "$DM_FILE" ]; then
 	sed -i '/ntfs-3g-utils /d' $DM_FILE
 
 	cd $PKG_PATH && echo "diskman has been fixed!"
+fi
+
+#移除sb内核回溯移植补丁
+SB_PATCH="../feeds/packages/net/sing-box/patches"
+if [ -d "$SB_PATCH" ]; then
+	echo " "
+
+	rm -rf $SB_PATCH
+
+	cd $PKG_PATH && echo "sing-box patches has been fixed!"
 fi
