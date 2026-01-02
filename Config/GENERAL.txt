@@ -116,7 +116,6 @@ CONFIG_PACKAGE_telnet-bsd=y
 # tailscale 不要带界面，自定义服务器难用
 CONFIG_PACKAGE_tailscale=y
 CONFIG_PACKAGE_luci-app-aria2=y
-#CONFIG_PACKAGE_luci-app-netspeedtest=y
-## docker podman
-CONFIG_PACKAGE_docker-compose=y
-CONFIG_PACKAGE_luci-app-dockerman=y
+## docker podman 暂时注释
+#CONFIG_PACKAGE_docker-compose=y
+#CONFIG_PACKAGE_luci-app-dockerman=y
