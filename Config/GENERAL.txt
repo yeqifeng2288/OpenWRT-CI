@@ -118,4 +118,4 @@ CONFIG_PACKAGE_tailscale=y
 CONFIG_PACKAGE_luci-app-aria2=y
 ## docker podman 暂时注释
 #CONFIG_PACKAGE_docker-compose=y
-#CONFIG_PACKAGE_luci-app-dockerman=y
+CONFIG_PACKAGE_luci-app-dockerman=y
