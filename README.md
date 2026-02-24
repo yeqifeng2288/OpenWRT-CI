@@ -16,6 +16,8 @@ https://github.com/VIKINGYFY/immortalwrt.git
 
 https://github.com/chenxin527/uboot-ipq60xx-emmc-build
 
+https://github.com/chenxin527/uboot-ipq60xx-nand-build
+
 https://github.com/chenxin527/uboot-ipq60xx-nor-build
 
 联发科版：
