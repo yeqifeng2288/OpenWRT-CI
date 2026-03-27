@@ -95,7 +95,7 @@ if [ -f "$DM_FILE" ]; then
 	cd $PKG_PATH && echo "diskman has been fixed!"
 fi
 
-修复luci-app-netspeedtest相关问题
+#修复luci-app-netspeedtest相关问题
 if [ -d *"luci-app-netspeedtest"* ]; then
 	echo " "
 
