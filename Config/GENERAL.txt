@@ -123,4 +123,7 @@ CONFIG_PACKAGE_tailscale=y
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
 ## docker podman 暂时注释
+CONFIG_PACKAGE_python3=y
+CONFIG_PACKAGE_python3-email=y
+CONFIG_PACKAGE_python3-pkg-resources=y
 CONFIG_PACKAGE_luci-app-dockerman=y
