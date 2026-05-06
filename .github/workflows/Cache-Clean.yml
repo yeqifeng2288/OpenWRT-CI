@@ -1,10 +1,10 @@
 name: Cache-Clean
 
 on:
-  #×Ô¶¯ÇåÀí£ºÃ¿ÖÜÒ»ÔçÉÏ4µã
+  #è‡ªåŠ¨æ¸…ç†ï¼šæ¯å‘¨ä¸€æ—©ä¸Š4ç‚¹
   schedule:
     - cron: 0 20 * * 0
-  #ÊÖ¶¯ÇåÀí
+  #æ‰‹åŠ¨æ¸…ç†
   workflow_dispatch:
 
 permissions: write-all

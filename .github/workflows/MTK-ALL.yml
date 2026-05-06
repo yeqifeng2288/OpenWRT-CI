@@ -1,5 +1,8 @@
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2026 VIKINGYFY
+
 #CI项目
-name: OWRT-ALL
+name: MTK-ALL
 
 #CI计划
 on:
@@ -32,7 +35,7 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        CONFIG: [MEDIATEK-WIFI-YES, MEDIATEK-WIFI-NO, ROCKCHIP, X86]
+        CONFIG: [MEDIATEK-WIFI-YES, MEDIATEK-WIFI-NO]
         SOURCE: [VIKINGYFY/immortalwrt]
         BRANCH: [owrt]
 
