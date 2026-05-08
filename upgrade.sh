@@ -41,12 +41,21 @@ if [ -f /var/tmp/sha256sums ] && grep -q "$firmwares_name" /var/tmp/sha256sums; 
     echo "Found SHA256 in sha256sums file: $expected_sha"
 else
     # Fallback to extract digest from GitHub API JSON response
-    # 1. tr removes newlines making it a single line
-    # 2. awk replaces {"url": with a newline to put each asset on its own line
-    # 3. grep finds the line containing our firmware
-    # 4. grep -o extracts the digest field
-    # 5. awk & tr clean up the output to leave just the 64-character hash
-    expected_sha=$(echo "$latest_release_json" | tr -d '\n\r' | awk '{gsub(/\{"url":/, "\n"); print}' | grep "$firmwares_name" | grep -o '"digest": *"sha256:[a-f0-9]*"' | awk -F'sha256:' '{print $2}' | tr -d '"' | head -n 1)
+    # 1. Strip all newlines to make the JSON a single line string.
+    # 2. Use awk to split the string using '"name":' as the field separator. 
+    #    This ensures each file's properties are isolated into separate fields.
+    # 3. Find the field containing our target filename and extract the digest from it.
+    expected_sha=$(echo "$latest_release_json" | tr -d '\n\r' | awk -F '"name":' -v fname="$firmwares_name" '{
+        for(i=1; i<=NF; i++) {
+            if (index($i, fname) > 0) {
+                if (match($i, /"digest": *"sha256:[a-f0-9]+/)) {
+                    val = substr($i, RSTART, RLENGTH);
+                    idx = index(val, "sha256:");
+                    print substr(val, idx+7, 64);
+                }
+            }
+        }
+    }' | head -n 1)
     
     if [ -n "$expected_sha" ]; then
         echo "Found SHA256 in GitHub API digest: $expected_sha"
