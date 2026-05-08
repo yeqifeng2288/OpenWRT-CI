@@ -41,14 +41,12 @@ if [ -f /var/tmp/sha256sums ] && grep -q "$firmwares_name" /var/tmp/sha256sums; 
     echo "Found SHA256 in sha256sums file: $expected_sha"
 else
     # Fallback to extract digest from GitHub API JSON response
-    expected_sha=$(echo "$latest_release_json" | awk -v RS='{"url":' -v name="$firmwares_name" '$0 ~ name {
-        if (match($0, /"digest": ?"sha256:[a-f0-9]+/)) {
-            val = substr($0, RSTART, RLENGTH);
-            if (match(val, /[a-f0-9]{64}/)) {
-                print substr(val, RSTART, 64);
-            }
-        }
-    }' | head -n 1)
+    # 1. tr removes newlines making it a single line
+    # 2. awk replaces {"url": with a newline to put each asset on its own line
+    # 3. grep finds the line containing our firmware
+    # 4. grep -o extracts the digest field
+    # 5. awk & tr clean up the output to leave just the 64-character hash
+    expected_sha=$(echo "$latest_release_json" | tr -d '\n\r' | awk '{gsub(/\{"url":/, "\n"); print}' | grep "$firmwares_name" | grep -o '"digest": *"sha256:[a-f0-9]*"' | awk -F'sha256:' '{print $2}' | tr -d '"' | head -n 1)
     
     if [ -n "$expected_sha" ]; then
         echo "Found SHA256 in GitHub API digest: $expected_sha"
