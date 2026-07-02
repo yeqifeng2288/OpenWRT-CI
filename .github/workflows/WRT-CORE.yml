@@ -60,7 +60,6 @@ jobs:
   core:
     name: ${{inputs.WRT_SOURCE}}
     runs-on: ubuntu-latest
-    # runs-on: self-hosted
     steps:
       - name: Checkout Projects
         uses: actions/checkout@main
