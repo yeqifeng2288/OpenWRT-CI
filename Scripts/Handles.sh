@@ -62,17 +62,17 @@ if [ -d "$PKG_PATH/luci-app-mini-diskmanager" ]; then
 fi
 
 #修复TailScale配置文件冲突
-FEEDS_PACKAGES="$PKG_PATH/../feeds/packages"
-TS_FILE="$(find "$FEEDS_PACKAGES" -maxdepth 3 -type f -wholename '*/tailscale/Makefile' -print -quit 2>/dev/null)"
-if [ -f "$TS_FILE" ]; then
-	echo " "
-
-	if sed -i '/\/files/d' "$TS_FILE"; then
-		echo "tailscale has been fixed!"
-	else
-		echo "tailscale fix failed; continuing!"
-	fi
-fi
+#FEEDS_PACKAGES="$PKG_PATH/../feeds/packages"
+#TS_FILE="$(find "$FEEDS_PACKAGES" -maxdepth 3 -type f -wholename '*/tailscale/Makefile' -print -quit 2>/dev/null)"
+#if [ -f "$TS_FILE" ]; then
+#	echo " "
+#
+#	if sed -i '/\/files/d' "$TS_FILE"; then
+#		echo "tailscale has been fixed!"
+#	else
+#		echo "tailscale fix failed; continuing!"
+#	fi
+#fi
 
 #修复Rust编译失败
 RUST_FILE="$(find "$FEEDS_PACKAGES" -maxdepth 3 -type f -wholename '*/rust/Makefile' -print -quit 2>/dev/null)"
