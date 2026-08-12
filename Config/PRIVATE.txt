@@ -1,4 +1,7 @@
-﻿#科学插件调整
+﻿#系统组件
+CONFIG_PACKAGE_wpad-mbedtls=y
+
+#科学插件调整
 CONFIG_PACKAGE_luci-app-homeproxy=n
 CONFIG_PACKAGE_luci-app-passwall=y
 ##自定义
@@ -24,4 +27,5 @@ CONFIG_PACKAGE_luci-app-dockerman=y
 ## OpenwrtSoho
 CONFIG_PACKAGE_openwisp-config=y
 CONFIG_PACKAGE_openwisp-monitoring=y
+CONFIG_PACKAGE_luci-i18n-openwisp-zh-cn=y
 CONFIG_PACKAGE_luci-app-usteer=y
