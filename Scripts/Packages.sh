@@ -84,6 +84,7 @@ UPDATE_PACKAGE "luci-app-natmapt" "muink/luci-app-natmapt" "master"
 UPDATE_PACKAGE "airpi3000m" "LianXia233/luci-app-airpi3000m-fancontrol" "main"
 UPDATE_PACKAGE "h5000m" "LianXia233/luci-app-h5000m-netmode" "main"
 UPDATE_PACKAGE "qmodem-generic" "LianXia233/luci-app-qmodem-generic" "main"
+UPDATE_PACKAGE "xray-core" "XTLS/Xray-core" "main"
 
 #更新软件包版本
 UPDATE_VERSION() {

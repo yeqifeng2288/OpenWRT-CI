@@ -6,6 +6,7 @@ CONFIG_PACKAGE_wpad-mbedtls=y
 #科学插件调整
 CONFIG_PACKAGE_luci-app-homeproxy=n
 CONFIG_PACKAGE_luci-app-passwall=y
+CONFIG_PACKAGE_xray-core=y
 ##自定义
 CONFIG_PACKAGE_kmod-vrf=y
 ##预装系统工具
