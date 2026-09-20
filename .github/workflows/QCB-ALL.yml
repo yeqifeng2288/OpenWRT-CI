@@ -1,5 +1,8 @@
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2026 VIKINGYFY
+
 #CI项目
-name: QCA-ALL
+name: QCB-ALL
 
 #CI计划
 on:
@@ -32,9 +35,9 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        CONFIG: [IPQ60XX-WIFI-YES]
+        CONFIG: [IPQ53XX-WIFI-NO, IPQ95XX-WIFI-YES]
         SOURCE: [VIKINGYFY/immortalwrt]
-        BRANCH: [main]
+        BRANCH: [owrt]
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/WRT-CORE.yml
