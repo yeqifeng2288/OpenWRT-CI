@@ -1,5 +1,5 @@
 ﻿#内核
-CONFIG_PACKAGE_kmod-oaf=y
+#CONFIG_PACKAGE_kmod-oaf=y
 #系统组件
 CONFIG_PACKAGE_wpad-mbedtls=y
 
