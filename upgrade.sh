@@ -1,8 +1,19 @@
 #!/bin/sh
 
-API_URL="https://api.github.com/repos/yeqifeng2288/OpenWRT-CI/releases/latest"
+RELEASE_PREFIX="IPQ60XX-WIFI-YES-"
+RELEASES_API_URL="https://api.github.com/repos/yeqifeng2288/OpenWRT-CI/releases?per_page=100"
 
-echo "Fetching latest release from $API_URL..."
+echo "Fetching latest ${RELEASE_PREFIX} release from $RELEASES_API_URL..."
+releases_json=$(curl -s "$RELEASES_API_URL")
+release_tag=$(echo "$releases_json" | grep -o '"tag_name": *"IPQ60XX-WIFI-YES-[^"]*"' | awk -F'"' '{print $4}' | head -n 1)
+
+if [ -z "$release_tag" ]; then
+    echo "Error: Cannot find a release with prefix ${RELEASE_PREFIX}."
+    exit 1
+fi
+
+API_URL="https://api.github.com/repos/yeqifeng2288/OpenWRT-CI/releases/tags/${release_tag}"
+echo "Fetching release $release_tag from $API_URL..."
 latest_release_json=$(curl -s "$API_URL")
 
 # Extract the sysupgrade bin download URL from JSON
