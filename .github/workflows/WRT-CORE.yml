@@ -182,6 +182,20 @@ jobs:
 
           make defconfig -j$(nproc) && make clean -j$(nproc)
 
+          echo "Selected target configuration:"
+          grep -E '^(CONFIG_TARGET_(qualcommax|DEVICE_qualcommax)|CONFIG_PACKAGE_kmod-oaf)=' .config || true
+
+          if [[ "$WRT_CONFIG" == 'IPQ60XX-WIFI-YES-25' ]]; then
+            grep -q '^CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01=y$' .config || {
+              echo "ERROR: JDCloud RE-SS-01 target was not selected after make defconfig"
+              exit 1
+            }
+            grep -q '^CONFIG_PACKAGE_kmod-oaf=y$' .config || {
+              echo "ERROR: CONFIG_PACKAGE_kmod-oaf=y was not selected after make defconfig"
+              exit 1
+            }
+          fi
+
       - name: Download Packages
         if: ${{ !inputs.WRT_TEST }}
         run: |
@@ -225,6 +239,15 @@ jobs:
           cp -f ./.config ./upload/Config-"$WRT_CONFIG"-"$WRT_INFO"-"$WRT_BRANCH"-"$WRT_DATE".txt
 
           if [[ "$WRT_TEST" != 'true' ]]; then
+            echo "Generated target files:"
+            find ./bin/targets -type f -print
+
+            IMAGE_COUNT=$(find ./bin/targets -type f \( -name '*.bin' -o -name '*.itb' -o -name '*.ubi' \) | wc -l)
+            if [[ "$IMAGE_COUNT" -eq 0 ]]; then
+              echo "ERROR: no firmware image (.bin, .itb, or .ubi) was generated"
+              exit 1
+            fi
+
             echo "WRT_KVER=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^kernel - \K[\d\.]+' {} \;)" >> $GITHUB_ENV
             echo "WRT_LIST=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^luci-(app|theme)[^ ]*' {} \; | tr '\n' ' ')" >> $GITHUB_ENV
 
