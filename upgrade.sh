@@ -16,8 +16,9 @@ API_URL="https://api.github.com/repos/yeqifeng2288/OpenWRT-CI/releases/tags/${re
 echo "Fetching release $release_tag from $API_URL..."
 latest_release_json=$(curl -s "$API_URL")
 
-# Extract the sysupgrade bin download URL from JSON
-download_url=$(echo "$latest_release_json" | grep -o '"browser_download_url": *"[^"]*-jdcloud_re-ss-01-squashfs-sysupgrade-VIKINGYFY-main-wifi-yes-[^"]*\.bin"' | awk -F'"' '{print $4}' | head -n 1)
+# Extract the device sysupgrade image; the branch is variable and WIFI-YES
+# may be uppercase (current builds) or lowercase (older releases).
+download_url=$(echo "$latest_release_json" | grep -Eo '"browser_download_url": *"[^"]*jdcloud_re-ss-01-squashfs-sysupgrade-VIKINGYFY-[^"]*-[Ww][Ii][Ff][Ii]-[Yy][Ee][Ss]-[^"]*\.bin"' | awk -F'"' '{print $4}' | head -n 1)
 
 if [ -z "$download_url" ]; then
     echo "Error: Cannot find sysupgrade firmware URL in the latest release."
