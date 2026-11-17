@@ -1,11 +1,11 @@
 #!/bin/sh
 
-RELEASE_PREFIX="IPQ60XX-WIFI-YES-"
+RELEASE_PREFIX="IPQ60XX-WIFI-YES-25-"
 RELEASES_API_URL="https://api.github.com/repos/yeqifeng2288/OpenWRT-CI/releases?per_page=100"
 
 echo "Fetching latest ${RELEASE_PREFIX} release from $RELEASES_API_URL..."
 releases_json=$(curl -s "$RELEASES_API_URL")
-release_tag=$(echo "$releases_json" | grep -o '"tag_name": *"IPQ60XX-WIFI-YES-[^"]*"' | awk -F'"' '{print $4}' | head -n 1)
+release_tag=$(echo "$releases_json" | grep -o "\"tag_name\": *\"${RELEASE_PREFIX}[^\"]*\"" | awk -F'"' '{print $4}' | head -n 1)
 
 if [ -z "$release_tag" ]; then
     echo "Error: Cannot find a release with prefix ${RELEASE_PREFIX}."
@@ -16,9 +16,9 @@ API_URL="https://api.github.com/repos/yeqifeng2288/OpenWRT-CI/releases/tags/${re
 echo "Fetching release $release_tag from $API_URL..."
 latest_release_json=$(curl -s "$API_URL")
 
-# Extract the device sysupgrade image; the branch is variable and WIFI-YES
-# may be uppercase (current builds) or lowercase (older releases).
-download_url=$(echo "$latest_release_json" | grep -Eo '"browser_download_url": *"[^"]*jdcloud_re-ss-01-squashfs-sysupgrade-VIKINGYFY-[^"]*-[Ww][Ii][Ff][Ii]-[Yy][Ee][Ss]-[^"]*\.bin"' | awk -F'"' '{print $4}' | head -n 1)
+# Match the device image with the current owner/branch/none suffix.
+# Keep support for older VIKINGYFY and WIFI-YES filenames.
+download_url=$(echo "$latest_release_json" | grep -Eo '"browser_download_url": *"[^"]*/qualcommax-ipq60xx-jdcloud_re-ss-01-squashfs-sysupgrade-(yeqifeng2288|VIKINGYFY)-[^"/]*-(none|[Ww][Ii][Ff][Ii]-[Yy][Ee][Ss])-[^"/]*\.bin"' | awk -F'"' '{print $4}' | head -n 1)
 
 if [ -z "$download_url" ]; then
     echo "Error: Cannot find sysupgrade firmware URL in the latest release."
