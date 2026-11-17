@@ -267,10 +267,13 @@ jobs:
             find ./bin/targets/ -iregex ".*\(buildinfo\|json\|sha256sums\|packages\)$" -exec rm -rf {} +
 
             for FILE in $(find ./bin/targets/ -type f -iname "*$WRT_TARGET*") ; do
-              EXT=$(basename $FILE | cut -d '.' -f 2-)
-              NAME=$(basename $FILE | cut -d '.' -f 1 | grep -io "\($WRT_TARGET\).*")
+              #先移除含版本号的前缀，避免 25.12.2 中的点被误认为扩展名分隔符
+              TARGET_FILE=$(basename "$FILE")
+              TARGET_FILE="$WRT_TARGET${TARGET_FILE#*"$WRT_TARGET"}"
+              EXT="${TARGET_FILE#*.}"
+              NAME="${TARGET_FILE%%.*}"
               NEW_FILE="$NAME"-"$WRT_INFO"-"$WRT_BRANCH"-"$WRT_WIFI"-"$WRT_DATE"."$EXT"
-              mv -f $FILE ./upload/$NEW_FILE
+              mv -f "$FILE" "./upload/$NEW_FILE"
             done
 
             find ./bin/targets/ -type f -exec mv -f {} ./upload/ \;
