@@ -34,7 +34,7 @@ jobs:
       matrix:
         CONFIG: [X86-25]
         SOURCE: [VIKINGYFY/immortalwrt]
-        BRANCH: [owrt]
+        BRANCH: [v25.12]
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/WRT-CORE.yml
