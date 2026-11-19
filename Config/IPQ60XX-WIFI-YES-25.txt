@@ -1,7 +1,8 @@
+#版本标识
 CONFIG_IMAGEOPT=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_NUMBER="25.12.2"
-#CONFIG_VERSION_REPO="https://github.com/VIKINGYFY/immortalwrt"
+CONFIG_VERSION_REPO="https://github.com/yeqifeng2288/immortalwrt"
 
 #设备平台
 CONFIG_TARGET_qualcommax=y
